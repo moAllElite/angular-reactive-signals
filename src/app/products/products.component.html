@@ -1,0 +1,41 @@
+<div class="p-3">
+  <!-- dashboard  -->
+  <ul class="nav-pills">
+    <li class="btn btn-outline-info p-3 ms-1">Selected Products: {{ selectedProduct() }}</li>
+    <li class="btn p-3 ms-1 btn-outline-dark" >Total : {{ total() | currency:'XOF' }}</li>
+  </ul>
+</div>
+  <!-- dashboard  -->
+
+   <!-- products  table   -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Selected</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for (product of products(); track product.id) {
+          <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price | currency:'XOF'}}</td>
+          <td class="selected-check">
+              <a  (click)="select(product)"
+               [class]="product.selected ?'btn btn-success': 'btn btn-danger'" >
+                <i [class]="product.selected?
+                  ' bi-check2-circle': 'bi bi-circle'
+                "></i>
+              </a>
+
+          </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+
+
